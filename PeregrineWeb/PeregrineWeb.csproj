@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Peregrine_ResultController.cs" />
+    <Compile Include="Controllers\ResourceLibraryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -232,6 +233,7 @@
     <Content Include="Views\Peregrine_Result\Details.cshtml" />
     <Content Include="Views\Peregrine_Result\Edit.cshtml" />
     <Content Include="Views\Peregrine_Result\Index.cshtml" />
+    <Content Include="Views\ResourceLibrary\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
