@@ -1,0 +1,123 @@
+﻿@model IEnumerable<PeregrineWeb.Models.Peregrine_Result>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CIK)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Symbol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Last_Close)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.C50_Day_Avg)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address_1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address_2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City___State)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SIC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Industry)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MACD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MACD_Signal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stochastic_Slow)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stochastic_Signal)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CIK)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Symbol)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Last_Close)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.C50_Day_Avg)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address_1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address_2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City___State)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SIC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Industry)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MACD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MACD_Signal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stochastic_Slow)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stochastic_Signal)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

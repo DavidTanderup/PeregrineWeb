@@ -1,0 +1,385 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PeregrineResearchDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CentralIndexKey">
+          <Key>
+            <PropertyRef Name="CentralIndexKeyID" />
+          </Key>
+          <Property Name="CentralIndexKeyID" Type="int" Nullable="false" />
+          <Property Name="Symbol" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CIK" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clean Data">
+          <Key>
+            <PropertyRef Name="Symbol" />
+          </Key>
+          <Property Name="Symbol" Type="varchar" MaxLength="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company Information">
+          <Key>
+            <PropertyRef Name="CIK" />
+          </Key>
+          <Property Name="CIK" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" Nullable="false" />
+          <Property Name="Address 1" Type="varchar(max)" Nullable="false" />
+          <Property Name="Address 2" Type="varchar(max)" />
+          <Property Name="City / State" Type="varchar(max)" Nullable="false" />
+          <Property Name="Phone" Type="varchar(max)" Nullable="false" />
+          <Property Name="SIC" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Peregrine Results">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="CIK" Type="int" Nullable="false" />
+          <Property Name="Symbol" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Last Close" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="50 Day Avg" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Address 1" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Address 2" Type="varchar" MaxLength="255" />
+          <Property Name="City / State" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="255" />
+          <Property Name="SIC" Type="int" />
+          <Property Name="Industry" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="MACD" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="MACD Signal" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Stochastic Slow" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Stochastic Signal" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Results">
+          <Key>
+            <PropertyRef Name="ResultID" />
+          </Key>
+          <Property Name="ResultID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="CIK" Type="int" Nullable="false" />
+          <Property Name="Symbol" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Last Close" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="50 Day Avg" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MACD" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MACD Signal" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMA 12" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMA 26" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Stochastic Fast" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Stochastic Slow" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Stochastic Signal" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SIC Codes">
+          <Key>
+            <PropertyRef Name="SIC Code" />
+          </Key>
+          <Property Name="SIC Code" Type="int" Nullable="false" />
+          <Property Name="Industry Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PeregrineResearchDatabase.dbo.Stocks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Stocks">
+          <Key>
+            <PropertyRef Name="StockID" />
+            <PropertyRef Name="Symbol" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Open" />
+            <PropertyRef Name="High" />
+            <PropertyRef Name="Low" />
+            <PropertyRef Name="Close" />
+            <PropertyRef Name="Volume" />
+          </Key>
+          <Property Name="StockID" Type="int" Nullable="false" />
+          <Property Name="Symbol" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Open" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="High" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Low" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Close" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Volume" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityContainer Name="PeregrineResearchDatabaseModelStoreContainer">
+          <EntitySet Name="CentralIndexKey" EntityType="Self.CentralIndexKey" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clean Data" EntityType="Self.Clean Data" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company Information" EntityType="Self.Company Information" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Peregrine Results" EntityType="Self.Peregrine Results" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Results" EntityType="Self.Results" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SIC Codes" EntityType="Self.SIC Codes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stocks" EntityType="Self.Stocks" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Stocks].[StockID] AS [StockID], 
+    [Stocks].[Symbol] AS [Symbol], 
+    [Stocks].[Date] AS [Date], 
+    [Stocks].[Open] AS [Open], 
+    [Stocks].[High] AS [High], 
+    [Stocks].[Low] AS [Low], 
+    [Stocks].[Close] AS [Close], 
+    [Stocks].[Volume] AS [Volume]
+    FROM [dbo].[Stocks] AS [Stocks]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PeregrineResearchDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CentralIndexKey">
+          <Key>
+            <PropertyRef Name="CentralIndexKeyID" />
+          </Key>
+          <Property Name="CentralIndexKeyID" Type="Int32" Nullable="false" />
+          <Property Name="Symbol" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CIK" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clean_datum">
+          <Key>
+            <PropertyRef Name="Symbol" />
+          </Key>
+          <Property Name="Symbol" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company_Information">
+          <Key>
+            <PropertyRef Name="CIK" />
+          </Key>
+          <Property Name="CIK" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address_1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address_2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="City___State" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SIC" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Peregrine_Result">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CIK" Type="Int32" Nullable="false" />
+          <Property Name="Symbol" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Last_Close" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="C50_Day_Avg" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address_1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address_2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="City___State" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SIC" Type="Int32" />
+          <Property Name="Industry" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MACD" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MACD_Signal" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Stochastic_Slow" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Stochastic_Signal" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="ResultID" />
+          </Key>
+          <Property Name="ResultID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CIK" Type="Int32" Nullable="false" />
+          <Property Name="Symbol" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Last_Close" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="C50_Day_Avg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MACD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MACD_Signal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EMA_12" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EMA_26" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Stochastic_Fast" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Stochastic_Slow" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Stochastic_Signal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SIC_Code">
+          <Key>
+            <PropertyRef Name="SIC_Code1" />
+          </Key>
+          <Property Name="SIC_Code1" Type="Int32" Nullable="false" />
+          <Property Name="Industry_Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="StockID" />
+            <PropertyRef Name="Symbol" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Open" />
+            <PropertyRef Name="High" />
+            <PropertyRef Name="Low" />
+            <PropertyRef Name="Close" />
+            <PropertyRef Name="Volume" />
+          </Key>
+          <Property Name="StockID" Type="Int32" Nullable="false" />
+          <Property Name="Symbol" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Open" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="High" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Low" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Close" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Volume" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="PeregrineResearchDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CentralIndexKeys" EntityType="Self.CentralIndexKey" />
+          <EntitySet Name="Clean_Data" EntityType="Self.Clean_datum" />
+          <EntitySet Name="Company_Information" EntityType="Self.Company_Information" />
+          <EntitySet Name="Peregrine_Results" EntityType="Self.Peregrine_Result" />
+          <EntitySet Name="Results" EntityType="Self.Result" />
+          <EntitySet Name="SIC_Codes" EntityType="Self.SIC_Code" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Stocks" EntityType="Self.Stock" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PeregrineResearchDatabaseModelStoreContainer" CdmEntityContainer="PeregrineResearchDatabaseEntities">
+          <EntitySetMapping Name="CentralIndexKeys">
+            <EntityTypeMapping TypeName="PeregrineResearchDatabaseModel.CentralIndexKey">
+              <MappingFragment StoreEntitySet="CentralIndexKey">
+                <ScalarProperty Name="CentralIndexKeyID" ColumnName="CentralIndexKeyID" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="CIK" ColumnName="CIK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clean_Data">
+            <EntityTypeMapping TypeName="PeregrineResearchDatabaseModel.Clean_datum">
+              <MappingFragment StoreEntitySet="Clean Data">
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Company_Information">
+            <EntityTypeMapping TypeName="PeregrineResearchDatabaseModel.Company_Information">
+              <MappingFragment StoreEntitySet="Company Information">
+                <ScalarProperty Name="CIK" ColumnName="CIK" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address_1" ColumnName="Address 1" />
+                <ScalarProperty Name="Address_2" ColumnName="Address 2" />
+                <ScalarProperty Name="City___State" ColumnName="City / State" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="SIC" ColumnName="SIC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Peregrine_Results">
+            <EntityTypeMapping TypeName="PeregrineResearchDatabaseModel.Peregrine_Result">
+              <MappingFragment StoreEntitySet="Peregrine Results">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CIK" ColumnName="CIK" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="Last_Close" ColumnName="Last Close" />
+                <ScalarProperty Name="C50_Day_Avg" ColumnName="50 Day Avg" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address_1" ColumnName="Address 1" />
+                <ScalarProperty Name="Address_2" ColumnName="Address 2" />
+                <ScalarProperty Name="City___State" ColumnName="City / State" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="SIC" ColumnName="SIC" />
+                <ScalarProperty Name="Industry" ColumnName="Industry" />
+                <ScalarProperty Name="MACD" ColumnName="MACD" />
+                <ScalarProperty Name="MACD_Signal" ColumnName="MACD Signal" />
+                <ScalarProperty Name="Stochastic_Slow" ColumnName="Stochastic Slow" />
+                <ScalarProperty Name="Stochastic_Signal" ColumnName="Stochastic Signal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Results">
+            <EntityTypeMapping TypeName="PeregrineResearchDatabaseModel.Result">
+              <MappingFragment StoreEntitySet="Results">
+                <ScalarProperty Name="ResultID" ColumnName="ResultID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CIK" ColumnName="CIK" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="Last_Close" ColumnName="Last Close" />
+                <ScalarProperty Name="C50_Day_Avg" ColumnName="50 Day Avg" />
+                <ScalarProperty Name="MACD" ColumnName="MACD" />
+                <ScalarProperty Name="MACD_Signal" ColumnName="MACD Signal" />
+                <ScalarProperty Name="EMA_12" ColumnName="EMA 12" />
+                <ScalarProperty Name="EMA_26" ColumnName="EMA 26" />
+                <ScalarProperty Name="Stochastic_Fast" ColumnName="Stochastic Fast" />
+                <ScalarProperty Name="Stochastic_Slow" ColumnName="Stochastic Slow" />
+                <ScalarProperty Name="Stochastic_Signal" ColumnName="Stochastic Signal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIC_Codes">
+            <EntityTypeMapping TypeName="PeregrineResearchDatabaseModel.SIC_Code">
+              <MappingFragment StoreEntitySet="SIC Codes">
+                <ScalarProperty Name="SIC_Code1" ColumnName="SIC Code" />
+                <ScalarProperty Name="Industry_Title" ColumnName="Industry Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="PeregrineResearchDatabaseModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stocks">
+            <EntityTypeMapping TypeName="PeregrineResearchDatabaseModel.Stock">
+              <MappingFragment StoreEntitySet="Stocks">
+                <ScalarProperty Name="StockID" ColumnName="StockID" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Open" ColumnName="Open" />
+                <ScalarProperty Name="High" ColumnName="High" />
+                <ScalarProperty Name="Low" ColumnName="Low" />
+                <ScalarProperty Name="Close" ColumnName="Close" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
