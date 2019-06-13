@@ -3,136 +3,98 @@
 @{
     ViewBag.Title = "Details";
 }
+@{
+    string beginning = "https://www.sec.gov/cgi-bin/browse-edgar?CIK=";
+    string end = "&owner=exclude&action=getcompany&Find=Search";
+    string cik = Model.CIK.ToString();
 
-<h2>Details</h2>
+    string url = string.Concat(beginning, cik, end);
 
+    string start = "https://www.nasdaq.com/symbol/";
+    string finish = "/real-time";
+    string symbol = Model.Symbol.ToString().ToLower();
+
+    string symbolUrl = string.Concat(start, symbol, finish);
+}
+<h2>Company Details</h2>
+<h2>@Html.DisplayFor(model => model.Name) </h2>
+<h3>
+    @Html.DisplayFor(model => model.Industry
+)
+</h3>
+<h2>
+    <a href="@string.Format(url)" class="btn btn-primary btn-sm">EDGAR Database &raquo;</a>
+    <a href="@string.Format(symbolUrl)" class="btn btn-primary btn-sm">NASDAQ Live Prices &raquo;</a>
+</h2>
 <div>
-    <h4>Peregrine_Result</h4>
+
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CIK)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CIK)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Symbol)
-        </dt>
-
+        <dt><strong>Company Symbol:</strong></dt>
         <dd>
             @Html.DisplayFor(model => model.Symbol)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Last_Close)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Last_Close)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.C50_Day_Avg)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.C50_Day_Avg)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Address_1)
-        </dt>
+        <dt><strong>Address One:</strong></dt>
 
         <dd>
             @Html.DisplayFor(model => model.Address_1)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Address_2)
-        </dt>
+        <dt><strong>Address Two:</strong></dt>
 
         <dd>
             @Html.DisplayFor(model => model.Address_2)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.City___State)
-        </dt>
+        <dt><strong>City, State / Country:</strong></dt>
 
         <dd>
             @Html.DisplayFor(model => model.City___State)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
+        <dt><strong>Phone:</strong></dt>
 
         <dd>
             @Html.DisplayFor(model => model.Phone)
         </dd>
+        <dt>Peregrine Research</dt>
+        <dd>Technical Details</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SIC)
-        </dt>
+        <dt><strong>Last Close:</strong></dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SIC)
+            $@Html.DisplayFor(model => model.Last_Close)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Industry)
-        </dt>
+        <dt><strong>50 Day Average:</strong></dt>
+
+        <dd>
+            $@Html.DisplayFor(model => model.C50_Day_Avg)
+        </dd>
+
+        <dt><strong>Business Industry:</strong></dt>
 
         <dd>
             @Html.DisplayFor(model => model.Industry)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MACD)
-        </dt>
+        <dt><strong>MACD:</strong></dt>
 
         <dd>
             @Html.DisplayFor(model => model.MACD)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MACD_Signal)
-        </dt>
+        <dt><strong>MACD Signal:</strong></dt>
 
         <dd>
             @Html.DisplayFor(model => model.MACD_Signal)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Stochastic_Slow)
-        </dt>
+        <dt><strong>Stochastic %K:</strong></dt>
 
         <dd>
             @Html.DisplayFor(model => model.Stochastic_Slow)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Stochastic_Signal)
-        </dt>
+        <dt><strong>Stochastic Signal:</strong></dt>
 
         <dd>
             @Html.DisplayFor(model => model.Stochastic_Signal)
@@ -141,6 +103,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+
     @Html.ActionLink("Back to List", "Index")
 </p>
