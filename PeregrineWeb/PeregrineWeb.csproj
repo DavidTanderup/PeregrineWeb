@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Company_InformationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Peregrine_ResultController.cs" />
     <Compile Include="Controllers\ResourceLibraryController.cs" />
@@ -234,6 +235,11 @@
     <Content Include="Views\Peregrine_Result\Edit.cshtml" />
     <Content Include="Views\Peregrine_Result\Index.cshtml" />
     <Content Include="Views\ResourceLibrary\Index.cshtml" />
+    <Content Include="Views\Company_Information\Create.cshtml" />
+    <Content Include="Views\Company_Information\Delete.cshtml" />
+    <Content Include="Views\Company_Information\Details.cshtml" />
+    <Content Include="Views\Company_Information\Edit.cshtml" />
+    <Content Include="Views\Company_Information\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

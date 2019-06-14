@@ -1,0 +1,76 @@
+﻿@model PeregrineWeb.Models.Company_Information
+
+@{
+    ViewBag.Title = "Details";
+}
+@{
+    
+    string beginning = "https://www.sec.gov/cgi-bin/browse-edgar?CIK=";
+    string end = "&owner=exclude&action=getcompany&Find=Search";
+    string cik = Model.CIK.ToString();
+
+    string url = string.Concat(beginning, cik, end);
+
+
+
+}
+<h2>Company Details</h2>
+<h3>@Html.DisplayFor(model => model.Name) </h3>
+
+<h2>
+    <a href="@string.Format(url)" class="btn btn-primary btn-sm">EDGAR Database &raquo;</a>
+    
+</h2>
+
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Company Name:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            Address 1:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address_1)
+        </dd>
+
+        <dt>
+            Address 2:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address_2)
+        </dd>
+
+        <dt>
+            City / State:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City___State)
+        </dd>
+
+        <dt>
+            Phone:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+
+
+    </dl>
+</div>
+<p>
+    
+    @Html.ActionLink("Back to List", "Index")
+</p>
